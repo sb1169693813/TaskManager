@@ -14,7 +14,11 @@
 	    <div role="tabpanel" class="tab-pane active" id="toDo">
 		    <table class="table table-striped"> 
 		    @foreach($toDo as $task)
-		    	<tr><td>{{ $task->title }}</td></tr>
+		    	<tr>
+		    		<td>{{ $task->title }}</td>
+		    		<td>@include('tasks._checkFrom')</td>
+		    		<td>@include('tasks._editForm')</td>
+		    	</tr>
 		    @endforeach
 	    	</table>
 	    </div>

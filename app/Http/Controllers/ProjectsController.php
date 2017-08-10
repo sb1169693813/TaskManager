@@ -64,7 +64,8 @@ class ProjectsController extends Controller
         $project = Auth::user()->projects()->where('name',$name)->first();
         $toDo = $project->tasks()->where('completed',0)->get();
         $done = $project->tasks()->where('completed',1)->get();
-        return view('projects.show',compact('project','toDo','done'));
+        $projects = Project::pluck('name','id');
+        return view('projects.show',compact('project','toDo','done','projects'));
     }
 
     /**

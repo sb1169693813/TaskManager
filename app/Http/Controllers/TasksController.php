@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Project;
+use App\Task;
 
 class TasksController extends Controller
 {
@@ -76,7 +77,13 @@ class TasksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //return $request;
+        $task = Task::findOrFail($id);
+        $data = $request->input();
+        // return $data;
+        $data['project_id'] = $request->projectList;
+        $task->fill($data)->save();
+        return redirect()->back();
     }
 
     /**
@@ -88,5 +95,15 @@ class TasksController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function check($id)
+    {
+        // return $id;
+        $project = Task::findOrFail($id);
+        $project->completed = 1;
+        $project->save();
+        return redirect()->back();
     }
 }
