@@ -5756,4 +5756,21 @@ button.close {
     .thumbnail .caption a {
       color: black; }
 
+.project-modal {
+  background-color: #fff;
+  border: 1px dotted #ddd;
+  border-radius: 4px;
+  display: block;
+  height: 137px;
+  line-height: 1.42857;
+  margin-bottom: 20px;
+  padding: 4px;
+  transition: border 0.2s ease-in-out 0s; }
+  .project-modal .modal-trigger {
+    display: block;
+    font-size: 2em;
+    margin: 12% auto; }
+    .project-modal .modal-trigger .fa-btn {
+      margin-right: 0; }
+
 /*# sourceMappingURL=app.css.map */

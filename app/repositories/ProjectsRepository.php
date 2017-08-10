@@ -44,11 +44,11 @@ class ProjectsRepository
     		$project->thumbnail = $this->thumbnail($request);
     	}
         
-        if($request->name != $project->name){
-        	$project->name = $request->name;
-        }else{
-        	$project->name = $project->name;
-        }
+        // if($request->name != $project->name){
+        // 	$project->name = $request->name;
+        // }else{
+        // 	$project->name = $project->name;
+        // }
         // return $data;
         $project->save();
     }	

@@ -23,16 +23,16 @@ class UpdateProjectRequest extends Request
      */
     public function rules()
     {
-        return [
-            //'thumbnail' => 'image|dimensions:min_width=261,min_height=98'
-        ];
+        // return [
+        //     'thumbnail' => 'image|dimensions:min_width=261,min_height=98'
+        // ];
     }
 
     public function messages()
     {
-        return [
-            'thumbnail.image' => '请上传图片格式的文件',
-            'thumbnail.dimensions' => '上传的图片尺寸过小，请至少是261x98',
-        ];
+        // return [
+        //     'thumbnail.image' => '请上传图片格式的文件',
+        //     'thumbnail.dimensions' => '上传的图片尺寸过小，请至少是261x98',
+        // ];
     }
 }

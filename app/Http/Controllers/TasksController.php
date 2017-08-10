@@ -6,19 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Project;
-use Auth;
-use App\repositories\ProjectsRepository;
-use App\Http\Requests\CreateProjectRequest;
-use App\Http\Requests\UpdateProjectRequest;
 
-class ProjectsController extends Controller
+class TasksController extends Controller
 {
-    protected $Repo;
-
-    public function __construct(ProjectsRepository $repo)
-    {
-        $this->Repo = $repo;
-    }
     /**
      * Display a listing of the resource.
      *
@@ -45,26 +35,25 @@ class ProjectsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateProjectRequest $request)
+    public function store(Request $request)
     {
-        $this->Repo->newProject($request);
-        
+        //return $request->id;
+        $project = Project::findOrFail($request->id);
+        $data = $request->input();
+        $data['project_id'] = $request->id;
+        $project->tasks()->create($data);
         return redirect()->back();
     }
 
-  
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($name)
+    public function show($id)
     {
-        $project = Auth::user()->projects()->where('name',$name)->first();
-        $toDo = $project->tasks()->where('completed',0)->get();
-        $done = $project->tasks()->where('completed',1)->get();
-        return view('projects.show',compact('project','toDo','done'));
+        //
     }
 
     /**
@@ -85,12 +74,9 @@ class ProjectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateProjectRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        //return $request->all();
-        $this->Repo->updateProject($request,$id);
-        
-        return redirect()->back();
+        //
     }
 
     /**
@@ -101,7 +87,6 @@ class ProjectsController extends Controller
      */
     public function destroy($id)
     {
-        Project::find($id)->delete();
-        return redirect()->back();
+        //
     }
 }

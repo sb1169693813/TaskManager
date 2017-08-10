@@ -10,7 +10,7 @@
       <div class="modal-body">
           <div class="form-group">
             {!! Form::label('name','项目名称',['class'=>'control-label'])!!}
-            {!! Form::text('name',$project->name,['class'=>'form-control']) !!}
+            {!! Form::text('name',$project->name,['class'=>'form-control','disabled'=>'true']) !!}
           </div>
           <div class="form-group">
             {!! Form::label('thumbnail','项目缩略图',['class'=>'control-lable'])!!}

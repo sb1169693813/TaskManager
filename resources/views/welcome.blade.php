@@ -32,7 +32,7 @@
 			  	</div>
     		@endforeach
     	@endif
-        <div class="col-md-10 col-md-offset-1">
+        <div class="project-modal ol-sm-6 col-md-3">
             @include('projects/_createProjectModal')
         </div>
     
