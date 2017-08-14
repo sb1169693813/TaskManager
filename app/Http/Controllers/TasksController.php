@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Project;
 use App\Task;
+use App\Http\Requests\CreateTaskRequest;
+use App\Http\Requests\UpdateTaskRequest;
+use Auth;
 
 class TasksController extends Controller
 {
@@ -17,7 +20,11 @@ class TasksController extends Controller
      */
     public function index()
     {
-        //
+        // $project = Auth::user()->projects()->where('name',$name)->first();
+        $toDo = Auth::user()->tasks()->where('completed',0)->paginate();
+        $done = Auth::user()->tasks()->where('completed',1)->paginate();
+        $projects = Project::pluck('name','id');
+        return view('tasks.index',compact('toDo','done','projects'));
     }
 
     /**
@@ -33,15 +40,15 @@ class TasksController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateTaskRequest $request)
     {
         //return $request->id;
         $project = Project::findOrFail($request->id);
         $data = $request->input();
         $data['project_id'] = $request->id;
+        $data['title'] = $request->name;
         $project->tasks()->create($data);
         return redirect()->back();
     }
@@ -75,7 +82,7 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateTaskRequest $request, $id)
     {
         //return $request;
         $task = Task::findOrFail($id);
@@ -94,7 +101,8 @@ class TasksController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Task::findOrFail($id)->delete();
+        return redirect()->back();
     }
 
 

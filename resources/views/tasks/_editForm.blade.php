@@ -19,8 +19,16 @@
         </div>
         <div class="form-group">
             {!! Form::label('projectList','任务名称',['class'=>'control-label']) !!}
-            {!! Form::select('projectList',$projects,$project->id,['class'=>'form-control']) !!}
+            {!! Form::select('projectList',$projects,null,['class'=>'form-control']) !!}
         </div>
+
+        @if($errors->has('title'))
+          <ul class="alert alert-danger">
+            @foreach($errors->get('title') as $error)
+              <li>{{ $error }}</li>
+            @endforeach
+          </ul>
+        @endif
       </div>
       <div class="modal-footer">
         {!! Form::submit('编辑任务',['class'=>'btn btn-default']) !!}

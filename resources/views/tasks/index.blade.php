@@ -13,9 +13,6 @@
 	  <!-- 待完成任务 -->
 	    <div role="tabpanel" class="tab-pane active" id="toDo">
 		    <table class="table table-striped"> 
-			    <thead>
-			    	<tr>@include('tasks._createForm')</tr>
-			    </thead>
 			    @foreach($toDo as $task)
 			    	<tr>
 			    		<td class="first-cell">{{ $task->title }}</td>
@@ -24,6 +21,7 @@
 			    		<td class="icon-cell">@include('tasks._deleteForm')</td>
 			    	</tr>
 			    @endforeach
+			    {{ $toDo->links() }}
 	    	</table>
 	    </div>
 	    <!-- 已完成任务 -->
@@ -32,6 +30,7 @@
 			    @foreach($done as $task)
 			    	<tr><td>{{ $task->title }}</td></tr>
 			    @endforeach
+			    {{ $done->links() }}
 	    	</table>
 	    </div>
 	  </div>
