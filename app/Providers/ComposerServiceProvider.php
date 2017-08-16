@@ -3,22 +3,21 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Carbon\Carbon;
 
-class AppServiceProvider extends ServiceProvider
+class ComposerServiceProvider extends ServiceProvider
 {
     /**
-     * Bootstrap any application services.
+     * Bootstrap the application services.
      *
      * @return void
      */
     public function boot()
     {
-        Carbon::setLocale('zh');
+        view()->composer('layouts.app','App\Http\ViewComposers\TaskCountComposer@compose');
     }
 
     /**
-     * Register any application services.
+     * Register the application services.
      *
      * @return void
      */

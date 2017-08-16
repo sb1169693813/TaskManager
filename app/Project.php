@@ -22,14 +22,22 @@ class Project extends Model
    */
   protected $hidden = [
   ];
-    public function user()
-    {
-      //$project->user();
-      return $this->belongsTo('App\User');
-    }
+  public function user()
+  {
+    //$project->user();
+    return $this->belongsTo('App\User');
+  }
 
-    public function tasks()
-    {
-      return $this->hasMany('App\Task');
-    }
+  public function tasks()
+  {
+    return $this->hasMany('App\Task');
+  }
+
+  public function getThumbnailAttribute($value)
+  {
+      if(!$value){
+        return "default.jpg";
+      }
+      return $value;
+  }
 }
