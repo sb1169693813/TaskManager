@@ -20,5 +20,7 @@ Route::get('/home', 'HomeController@index');
 Route::resource('projects','ProjectsController');
 Route::post('tasks/{id}/check','TasksController@check')->name('tasks.check');
 Route::resource('tasks','TasksController');
+Route::post('tasks/{task}/steps/completeall', 'StepsController@completeall')->name('completeall');
+Route::post('tasks/{task}/steps/clearall', 'StepsController@clearall')->name('clearall');
 //双重路由
 Route::resource('tasks.steps','StepsController');
